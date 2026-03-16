@@ -63,7 +63,7 @@
 
     /* ─── Navbar ─── */
     .navbar {
-      position: sticky; top: 0; z-index: 950;
+      position: sticky; top: 0; z-index: 1000;
       background: rgba(255,255,255,0.8);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -204,13 +204,15 @@
     /* ─── Mobile drawer ─── */
     .drawer { 
       transform: translateX(-100%); 
-      transition: transform .4s cubic-bezier(0.4, 0, 0.2, 1); 
-      visibility: hidden;
-      z-index: 1050;
+      transition: transform .4s cubic-bezier(0.4, 0, 0.2, 1), opacity .4s ease; 
+      opacity: 0;
+      z-index: 2000;
+      pointer-events: none;
     }
     .drawer.open { 
       transform: translateX(0); 
-      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
     }
 
     /* ─── Bottom Navigation ─── */
@@ -364,8 +366,8 @@
 <nav class="navbar" id="navbar">
   <div class="max-w-7xl mx-auto px-5 lg:px-8 h-[60px] flex items-center justify-between gap-6">
 
-    <!-- Hamburger -->
-    <button class="lg:hidden flex flex-col gap-[5.5px] p-2 -ml-1.5 transition-opacity hover:opacity-70" id="drawerOpen" aria-label="Open menu">
+    <!-- Hamburger (Left) -->
+    <button class="lg:hidden flex flex-col gap-[5.5px] p-2 -ml-2 transition-opacity hover:opacity-70 flex-shrink-0" id="drawerOpen" aria-label="Open menu">
       <span class="w-6 h-[1.5px] bg-charcoal block rounded-full"></span>
       <span class="w-6 h-[1.5px] bg-charcoal block rounded-full"></span>
       <span class="w-4 h-[1.5px] bg-charcoal block rounded-full"></span>
@@ -378,7 +380,7 @@
       </div>
       <div>
         <div class="text-charcoal font-black text-[15px] tracking-tight leading-none">JP GARMENTS</div>
-        <div class="text-brand text-[9px] font-semibold tracking-[0.14em] uppercase leading-none mt-0.5">Custom · Bulk · Manufacturing</div>
+        <div class="hidden sm:block text-brand text-[9px] font-semibold tracking-[0.14em] uppercase leading-none mt-0.5">Custom · Bulk · Manufacturing</div>
       </div>
     </a>
 
@@ -409,8 +411,8 @@
   </div>
 
   <!-- Mobile Drawer Overlay -->
-  <div class="fixed inset-0 bg-black/50 z-[1000] hidden" id="drawerOverlay"></div>
-  <aside class="drawer fixed top-0 left-0 h-full w-72 bg-white z-[1050] shadow-2xl flex flex-col" id="drawerMenu">
+  <div class="fixed inset-0 bg-black/60 z-[1900] hidden" id="drawerOverlay"></div>
+  <aside class="drawer fixed top-0 left-0 h-full w-72 bg-white z-[2000] shadow-2xl flex flex-col" id="drawerMenu">
     <div class="flex items-center justify-between px-5 py-4 border-b border-border">
       <div class="font-black text-charcoal text-sm tracking-tight">JP GARMENTS</div>
       <button id="drawerClose" class="text-muted hover:text-charcoal transition-colors p-1">
